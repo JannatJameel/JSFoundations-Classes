@@ -42,12 +42,11 @@ class Point {
  * let wallet = new Wallet(money);
  **********************************************************/
 class Wallet {
-  // implement Wallet!
-  constructor(money = 0) {}
-
-  credit = amount => {};
-
-  debit = amount => {};
+  constructor(money = 0){
+    this.money = money;
+  }
+  credit = amount => this.money + amount;
+  debit = amount => this.money - amount;
 }
 
 /**********************************************************
@@ -62,7 +61,12 @@ class Wallet {
  * let person = new Person(name, x, y);
  **********************************************************/
 class Person {
-  // implement Person!
+  constructor(name, x, y, wallet){
+    this.name = name;
+    this.location = new Point(x,y);
+    this.wallet = new Wallet(wallet=0);
+  }
+  moveTo = point => this.location = point;
 }
 
 /**********************************************************
@@ -81,7 +85,13 @@ class Person {
  * new vendor = new Vendor(name, x, y);
  **********************************************************/
 class Vendor {
-  // implement Vendor!
+  constructor(name, x, y, wallet, range = 5, price = 1){
+    super(name, x, y, wallet)
+    this.range = range;
+    this.price = price; 
+  }
+  sellTo = (customer, numberOfIcecream) => 
+    new Person.moveTo(this.x, this.y);
 }
 
 /**********************************************************
