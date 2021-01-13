@@ -111,19 +111,18 @@ class Vendor extends Person {
  *
  * new customer = new Customer(name, x, y);
  **********************************************************/
-class Customer {
+class Customer extends Person {
   constructor (name, x, y) {
     super(name, x, y);
     this.wallet.credit(10);
   }
   _isInRange = (vendor) => this.location.distanceTo(vendor.location) <= vendor.range;
-  _haveEngoughMoney = (vendor, numberOfIceCreams) => this.wallet.money >= vendor.price * numberOfIceCreams;
+  _haveEnoughMoney = (vendor, numberOfIceCreams) => this.wallet.money >= vendor.price * numberOfIceCreams;
   requestIceCream = (vendor, numberOfIceCreams) => {
     if (this._isInRange(vendor) && this._haveEngoughMoney(vendor, numberOfIceCreams)) {
       vendor.sellTo(this, numberOfIceCreams);
     };
-  }
-
+  };
 }
 
 export { Point, Wallet, Person, Customer, Vendor };
